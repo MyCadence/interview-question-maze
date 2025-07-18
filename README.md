@@ -42,4 +42,4 @@ This project is licensed under the [MIT License](./LICENSE).
 
 ## 🙋‍♂️ About Me
 
-Hi! I’m a CS grad passionate about backend systems, cloud infrastructure, and building tools that solve real problems. You can check out more about me [here](https://github.com/yourusername).
+Hi! I’m a CS grad passionate about backend systems, cloud infrastructure, and building tools that solve real problems. You can check out more about me [here](https://github.com/MyCadence).
