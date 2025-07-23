@@ -2,8 +2,10 @@
 from flask import Flask, jsonify
 import json
 import os
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 #Load questions from JSON
 with open(os.path.join(os.path.dirname(__file__), "questions.json")) as f:
@@ -17,3 +19,7 @@ def get_question(question_id):
         return jsonify(question)
     else:
         return jsonify({"error": "Question not found"}), 404
+    
+
+if __name__ == "__main__":
+    app.run(debug=True)
