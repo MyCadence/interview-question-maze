@@ -6,6 +6,7 @@ export function GameProvider({ children }) {
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(3);
   const [visitedQuestions, setVisitedQuestions] = useState(new Set());
+  const [answeredCorrectly, setAnsweredCorrectly] = useState(new Set());
   const [gameResetId, setGameResetId] = useState(0); // Added to trigger resets
 
   const incrementScore = () => {
@@ -34,6 +35,7 @@ export function GameProvider({ children }) {
     setScore(0);
     setLives(3);
     setVisitedQuestions(new Set());
+    setAnsweredCorrectly(new Set());
     setGameResetId((prev) => prev + 1); // Increment to signal reset
   };
 
@@ -41,6 +43,7 @@ export function GameProvider({ children }) {
     <GameContext.Provider
       value={{
         score,
+        setScore,
         lives,
         visitedQuestions,
         incrementScore,
@@ -48,6 +51,8 @@ export function GameProvider({ children }) {
         addVisitedQuestion,
         resetGame,
         gameResetId, // expose this so consumers can watch for reset
+        answeredCorrectly,
+        setAnsweredCorrectly,
       }}
     >
       {children}

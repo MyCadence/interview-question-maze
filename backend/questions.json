@@ -1,95 +1,86 @@
 [
-    {
-      "id": "q1",
-      "question": "What's the time complexity of binary search?",
-      "options": [
-        { "text": "O(n)", "next_id": "q2" },
-        { "text": "O(log n)", "next_id": "q3" },
-        { "text": "O(n^2)", "next_id": "q4" }
-      ]
-    },
-    {
-      "id": "q3",
-      "question": "Correct! Next question: What's a hash table's average lookup time?",
-      "options": [
-        { "text": "O(1)", "next_id": "q5" },
-        { "text": "O(n)", "next_id": "q6" }
-      ]
-    },
-    {
-      "id": "q5",
-      "question": "Nice! What's the worst-case time complexity of accessing an array element by index?",
-      "options": [
-        { "text": "O(1)", "next_id": "q7" },
-        { "text": "O(log n)", "next_id": "q8" },
-        { "text": "O(n)", "next_id": "q8" }
-      ]
-    },
-    {
-      "id": "q7",
-      "question": "You're on a roll! What's the best average time complexity of a comparison-based sort?",
-      "options": [
-        { "text": "O(n log n)", "next_id": "q9" },
-        { "text": "O(n^2)", "next_id": "q10" }
-      ]
-    },
-    {
-      "id": "q9",
-      "question": "🔥 Well done! Merge Sort, Quick Sort, and Heap Sort all hit O(n log n). Restart?",
-      "options": [
-        { "text": "Yes", "next_id": "q1" }
-      ]
-    },
-    {
-      "id": "q2",
-      "question": "Not quite. Binary search splits in half each time, which is logarithmic.",
-      "options": [
-        { "text": "Try again", "next_id": "q1" }
-      ]
-    },
-    {
-      "id": "q4",
-      "question": "Nope. That’s quadratic — much slower than binary search.",
-      "options": [
-        { "text": "Try again", "next_id": "q1" }
-      ]
-    },
-    {
-      "id": "q6",
-      "question": "Incorrect. Hash tables average O(1) lookup, unless collisions stack.",
-      "options": [
-        { "text": "Retry", "next_id": "q3" }
-      ]
-    },
-    {
-      "id": "q8",
-      "question": "Oops! Arrays allow direct access by index — constant time.",
-      "options": [
-        { "text": "Retry", "next_id": "q5" }
-      ]
-    },
-    {
-      "id": "q10",
-      "question": "Wrong! O(n^2) is for bubble or insertion sort — not the best average.",
-      "options": [
-        { "text": "Retry", "next_id": "q7" }
-      ]
-    },
-
-    {
-      "id": "q9",
-      "question": "🔥 Well done! Merge Sort, Quick Sort, and Heap Sort all hit O(n log n). Want to claim your win?",
-      "options": [
-        { "text": "Finish Maze", "next_id": "win" },
-        { "text": "Restart", "next_id": "q1" }
-      ]
-    },
-    {
-      "id": "win",
-      "question": "🎉 Congratulations! You completed the Interview Question Memory Maze!",
-      "options": [
-        { "text": "Restart Maze", "next_id": "q1" }
-      ]
-    }
-  ]
-  
+  {
+    "id": "q1",
+    "question": "What's the time complexity of binary search?",
+    "options": [
+      { "text": "O(n)", "next_id": "q2", "isCorrect": false },
+      { "text": "O(log n)", "next_id": "q3", "isCorrect": true },
+      { "text": "O(n^2)", "next_id": "q4", "isCorrect": false }
+    ]
+  },
+  {
+    "id": "q2",
+    "question": "Not quite. Binary search splits in half each time, which is logarithmic.",
+    "options": [
+      { "text": "Try again", "next_id": "q1", "isCorrect": false }
+    ]
+  },
+  {
+    "id": "q3",
+    "question": "Correct! Next question: What's a hash table's average lookup time?",
+    "options": [
+      { "text": "O(1)", "next_id": "q5", "isCorrect": true },
+      { "text": "O(n)", "next_id": "q6", "isCorrect": false }
+    ]
+  },
+  {
+    "id": "q4",
+    "question": "Nope. That’s quadratic — much slower than binary search.",
+    "options": [
+      { "text": "Try again", "next_id": "q1", "isCorrect": false }
+    ]
+  },
+  {
+    "id": "q5",
+    "question": "Nice! What's the worst-case time complexity of accessing an array element by index?",
+    "options": [
+      { "text": "O(1)", "next_id": "q7", "isCorrect": true },
+      { "text": "O(log n)", "next_id": "q8", "isCorrect": false },
+      { "text": "O(n)", "next_id": "q8", "isCorrect": false }
+    ]
+  },
+  {
+    "id": "q6",
+    "question": "Incorrect. Hash tables average O(1) lookup, unless collisions stack.",
+    "options": [
+      { "text": "Retry", "next_id": "q3", "isCorrect": false }
+    ]
+  },
+  {
+    "id": "q7",
+    "question": "You're on a roll! What's the best average time complexity of a comparison-based sort?",
+    "options": [
+      { "text": "O(n log n)", "next_id": "q9", "isCorrect": true },
+      { "text": "O(n^2)", "next_id": "q10", "isCorrect": false }
+    ]
+  },
+  {
+    "id": "q8",
+    "question": "Oops! Arrays allow direct access by index — constant time.",
+    "options": [
+      { "text": "Retry", "next_id": "q5", "isCorrect": false }
+    ]
+  },
+  {
+    "id": "q9",
+    "question": "🔥 Well done! Merge Sort, Quick Sort, and Heap Sort all hit O(n log n). Want to claim your win?",
+    "options": [
+      { "text": "Finish Maze", "next_id": "win", "isCorrect": false },
+      { "text": "Restart", "next_id": "q1", "isCorrect": false }
+    ]
+  },
+  {
+    "id": "q10",
+    "question": "Wrong! O(n^2) is for bubble or insertion sort — not the best average.",
+    "options": [
+      { "text": "Retry", "next_id": "q7", "isCorrect": false }
+    ]
+  },
+  {
+    "id": "win",
+    "question": "🎉 Congratulations! You completed the Interview Question Memory Maze!",
+    "options": [
+      { "text": "Restart Maze", "next_id": "q1", "isCorrect": false }
+    ]
+  }
+]
