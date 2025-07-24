@@ -17,8 +17,8 @@ This project is part of my portfolio to showcase my skills in:
 ## 🔧 Tech Stack
 
 - **Frontend**: React, Tailwind CSS
-- **Backend**: Spring Boot, REST APIs
-- **Database**: PostgreSQL (or DynamoDB)
+- **Backend**: Flask, REST APIs
+- **Database**: JSON, PostgreSQL/DynamoDB
 - **Cloud**: AWS (EC2, S3, RDS, Lambda)
 - **Other**: Git, GitHub, CI/CD
 

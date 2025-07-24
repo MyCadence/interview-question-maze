@@ -1,5 +1,6 @@
 import React from "react";
 import Question from "./Question";
+import GameStatus from "./GameStatus";
 
 function App() {
   return (
@@ -8,7 +9,9 @@ function App() {
         Interview Question Maze
       </h1>
       <Question />
+      <GameStatus />
     </div>
+    
   );
 }
 

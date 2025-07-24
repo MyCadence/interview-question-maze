@@ -74,6 +74,22 @@
       "options": [
         { "text": "Retry", "next_id": "q7" }
       ]
+    },
+
+    {
+      "id": "q9",
+      "question": "🔥 Well done! Merge Sort, Quick Sort, and Heap Sort all hit O(n log n). Want to claim your win?",
+      "options": [
+        { "text": "Finish Maze", "next_id": "win" },
+        { "text": "Restart", "next_id": "q1" }
+      ]
+    },
+    {
+      "id": "win",
+      "question": "🎉 Congratulations! You completed the Interview Question Memory Maze!",
+      "options": [
+        { "text": "Restart Maze", "next_id": "q1" }
+      ]
     }
   ]
   

@@ -1,12 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { GameContext } from "./GameContext";
+import GameOver from "./GameOver";
 
 export default function Question() {
+  const {
+    incrementScore,
+    decrementLives,
+    addVisitedQuestion,
+    lives,
+    resetGame,
+    gameResetId, // watch for this to refetch/reset
+  } = useContext(GameContext);
+
   const [question, setQuestion] = useState(null);
   const [selectedOption, setSelectedOption] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Fetch question by id from backend
   const fetchQuestion = async (questionId) => {
     setLoading(true);
     setError(null);
@@ -16,34 +26,75 @@ export default function Question() {
       const data = await res.json();
       setQuestion(data);
       setSelectedOption("");
+      addVisitedQuestion(questionId);
     } catch (err) {
       setError(err.message);
       setQuestion(null);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
-  // On mount, load first question (q1)
+  // Reset game triggers fetch of first question:
   useEffect(() => {
     fetchQuestion("q1");
-  }, []);
+  }, [gameResetId]); // run on mount and every resetGame()
 
-  // Handle answer submission, load next question via selected option's next_id
+  const isRetryId = (id) =>
+    ["q2", "q4", "q6", "q8", "q10"].some((retryPrefix) =>
+      id.startsWith(retryPrefix)
+    );
+
   const handleSubmit = () => {
     if (!selectedOption) return alert("Please select an option!");
-    const nextQuestionId = question.options.find(
+
+    const chosenOption = question.options.find(
       (opt) => opt.text === selectedOption
-    )?.next_id;
-    if (nextQuestionId) {
-      fetchQuestion(nextQuestionId);
-    } else {
-      setError("No next question found.");
+    );
+
+    if (!chosenOption) {
+      setError("Selected option not found");
+      return;
     }
+
+    const nextQuestionId = chosenOption.next_id;
+
+    // If it's an ending path (including your "win" path)
+    if (!nextQuestionId || nextQuestionId === "end" || nextQuestionId === "win") {
+      incrementScore(); // optional bonus point for finishing
+      alert("🎉 Congratulations! You've completed the game.");
+      resetGame(); // just reset, don't fetchQuestion here
+      return;
+    }
+
+    if (isRetryId(nextQuestionId)) {
+      const projectedLives = lives - 1;
+      decrementLives();
+      if (projectedLives <= 0) {
+        alert("💀 Game Over! Restarting...");
+        resetGame();
+        return;
+      }
+    } else {
+      incrementScore();
+    }
+
+    fetchQuestion(nextQuestionId);
   };
 
   if (loading) return <div>Loading question...</div>;
   if (error) return <div className="text-red-500">Error: {error}</div>;
   if (!question) return null;
+
+  if (lives === 0) {
+    return (
+      <GameOver
+        onRestart={() => {
+          resetGame();
+        }}
+      />
+    );
+  }
 
   return (
     <div className="p-4 max-w-md mx-auto bg-white rounded-xl shadow-md">
@@ -66,8 +117,9 @@ export default function Question() {
         ))}
       </ul>
       <button
-        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50"
         onClick={handleSubmit}
+        disabled={loading || !selectedOption}
       >
         Next
       </button>

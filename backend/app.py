@@ -8,7 +8,7 @@ app = Flask(__name__)
 CORS(app)
 
 #Load questions from JSON
-with open(os.path.join(os.path.dirname(__file__), "questions.json")) as f:
+with open(os.path.join(os.path.dirname(__file__), "questions.json"), encoding="utf-8") as f:
     questions = {q["id"]: q for q in json.load(f)}
 
 
