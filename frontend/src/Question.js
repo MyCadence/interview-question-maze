@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { GameContext } from "./GameContext";
-import GameOver from "./GameOver";
+import GameOver from "./pages/GameOver";
 
 export default function Question() {
   const {

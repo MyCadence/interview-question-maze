@@ -18,7 +18,7 @@ This project is part of my portfolio to showcase my skills in:
 
 - **Frontend**: React, Tailwind CSS
 - **Backend**: Flask, REST APIs
-- **Database**: JSON, PostgreSQL/DynamoDB
+- **Database**: JSON, PostgreSQL/DocumentDB
 - **Cloud**: AWS (EC2, S3, RDS, Lambda)
 - **Other**: Git, GitHub, CI/CD
 
