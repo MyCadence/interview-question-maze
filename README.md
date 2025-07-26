@@ -7,7 +7,7 @@ An interactive full-stack web application designed to help software engineers pr
 ## 📌 Purpose
 
 This project is part of my portfolio to showcase my skills in:
-- 🧰 Full-stack development (React, Spring Boot)
+- 🧰 Full-stack development (React, Flask)
 - ☁️ Cloud infrastructure (AWS)
 - 🧪 Backend logic and API design
 - 🎨 Frontend UX with real-time interaction
