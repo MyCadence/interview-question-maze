@@ -1,8 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useGame } from '../GameContext'; // or useContext directly
 
 export default function GameOver() {
   const navigate = useNavigate();
+  const { resetGame } = useGame(); // get resetGame from context
+
+  const handleRetry = () => {
+    resetGame();            // clear all state (score, lives, visited)
+    navigate('/play');      // redirect to first question
+  };
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-red-100 text-center px-4">
@@ -19,7 +26,7 @@ export default function GameOver() {
         </button>
         <button
           className="px-6 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700"
-          onClick={() => navigate('/game')}
+          onClick={handleRetry}
         >
           Try Again
         </button>

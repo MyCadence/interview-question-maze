@@ -1,8 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useGame } from '../GameContext'; // adjust the path as needed
 
 export default function GameWon() {
   const navigate = useNavigate();
+  const { resetGame } = useGame(); // reset function from GameContext
+
+  const handleRestart = () => {
+    resetGame();       // clear lives, score, etc.
+    navigate('/play'); // go to the first question
+  };
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-green-100 text-center px-4">
@@ -19,7 +26,7 @@ export default function GameWon() {
         </button>
         <button
           className="px-6 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700"
-          onClick={() => navigate('/game')}
+          onClick={handleRestart}
         >
           Play Again
         </button>

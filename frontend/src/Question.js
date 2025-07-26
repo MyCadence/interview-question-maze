@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { GameContext } from "./GameContext";
 import GameOver from "./pages/GameOver";
+import GameWon from "./pages/GameWon";
 
 export default function Question() {
   const {
@@ -45,7 +46,7 @@ export default function Question() {
   }, [gameResetId]); // run on mount and every resetGame()
 
   const isRetryId = (id) =>
-    ["q2", "q4", "q6", "q8", "q10"].some((retryPrefix) =>
+    ["q2", "q4", "q6", "q8"].some((retryPrefix) =>
       id.startsWith(retryPrefix)
     );
 
@@ -64,52 +65,33 @@ export default function Question() {
     
       const nextQuestionId = chosenOption.next_id;
     
-      // Game completed
+      // Handle correct answers and scoring
+      if (chosenOption.isCorrect && !answeredCorrectly.has(question.id)) {
+        setScore(prev => prev + 1);
+        setAnsweredCorrectly(prev => new Set(prev).add(question.id));
+      }
+    
+      // Handle win condition
       if (!nextQuestionId || nextQuestionId === "end" || nextQuestionId === "win") {
-        if (chosenOption.isCorrect && !answeredCorrectly.has(question.id)) {
-          setScore(prev => prev + 1);
-          setAnsweredCorrectly(prev => new Set(prev).add(question.id));
-        }
-    
-        alert("🎉 Congratulations! You've completed the game.");
-        setTimeout(() => resetGame(), 50);
+        console.log("Reached win condition");
+        setQuestion({ id: "win" }); // This triggers GameWon
         return;
       }
     
-      // Handle forced restart (like q9 Restart)
-      if (question.id === "q9" && selectedOption === "Restart") {
-        resetGame();
-        return;
-      }
-    
-      // Retry logic
+      // Handle retry (incorrect path)
       if (isRetryId(nextQuestionId)) {
-        const projectedLives = lives - 1;
+        console.log("Incorrect answer, reducing life...");
         decrementLives();
-        if (projectedLives <= 0) {
-          alert("💀 Game Over! Restarting...");
-          resetGame();
-          return;
-        }
-      } else {
-        // Award point only if correct and not previously scored
-        if (chosenOption.isCorrect && !answeredCorrectly.has(question.id)) {
-          setScore(prev => prev + 1);
-          setAnsweredCorrectly(prev => new Set(prev).add(question.id));
-        }
       }
     
+      // Move to next question
       fetchQuestion(nextQuestionId);
-
+    
       console.log("Chosen option:", chosenOption);
       console.log("Is correct?", chosenOption.isCorrect);
       console.log("Question ID:", question.id);
     };
     
-
-  if (loading) return <div>Loading question...</div>;
-  if (error) return <div className="text-red-500">Error: {error}</div>;
-  if (!question) return null;
 
   if (lives === 0) {
     return (
@@ -118,6 +100,23 @@ export default function Question() {
           setTimeout(() => {
             resetGame();
           }, 50); // 50ms gives React time to reset context before re-render
+        }}
+      />
+    );
+  }
+
+  // Add this guard:
+if (loading || !question) {
+  return <div>Loading...</div>;
+}
+
+  if (question.id === "win") {
+    return (
+      <GameWon
+        onRestart={() => {
+          setTimeout(() => {
+            resetGame();
+          }, 50);
         }}
       />
     );

@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import {useContext} from "react";
 
 export const GameContext = createContext();
 
@@ -58,4 +59,8 @@ export function GameProvider({ children }) {
       {children}
     </GameContext.Provider>
   );
+}
+
+export function useGame() {
+  return useContext(GameContext);
 }

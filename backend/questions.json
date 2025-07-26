@@ -50,7 +50,7 @@
     "id": "q7",
     "question": "You're on a roll! What's the best average time complexity of a comparison-based sort?",
     "options": [
-      { "text": "O(n log n)", "next_id": "q9", "isCorrect": true },
+      { "text": "O(n log n)", "next_id": "win", "isCorrect": true },
       { "text": "O(n^2)", "next_id": "q10", "isCorrect": false }
     ]
   },
@@ -62,25 +62,10 @@
     ]
   },
   {
-    "id": "q9",
-    "question": "🔥 Well done! Merge Sort, Quick Sort, and Heap Sort all hit O(n log n). Want to claim your win?",
-    "options": [
-      { "text": "Finish Maze", "next_id": "win", "isCorrect": false },
-      { "text": "Restart", "next_id": "q1", "isCorrect": false }
-    ]
-  },
-  {
     "id": "q10",
     "question": "Wrong! O(n^2) is for bubble or insertion sort — not the best average.",
     "options": [
       { "text": "Retry", "next_id": "q7", "isCorrect": false }
-    ]
-  },
-  {
-    "id": "win",
-    "question": "🎉 Congratulations! You completed the Interview Question Memory Maze!",
-    "options": [
-      { "text": "Restart Maze", "next_id": "q1", "isCorrect": false }
     ]
   }
 ]
