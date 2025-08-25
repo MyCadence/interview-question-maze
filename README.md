@@ -18,19 +18,9 @@ This project is part of my portfolio to showcase my skills in:
 
 - **Frontend**: React, Tailwind CSS
 - **Backend**: Flask, REST APIs
-- **Database**: JSON, PostgreSQL/DocumentDB
+- **Database**: JSON, SQLite3, PostgreSQL/DocumentDB
 - **Cloud**: AWS (EC2, S3, RDS, Lambda)
 - **Other**: Git, GitHub, CI/CD
-
----
-
-## 🧭 Roadmap (High-Level)
-
-1. **Week 1**: Project setup, planning, boilerplate
-2. **Week 2**: Backend scaffolding (APIs, DB models)
-3. **Week 3**: Frontend scaffolding (basic UI pages)
-4. **Week 4**: AWS integration and deployment
-5. **Week 5**: Polish, testing, documentation
 
 ---
 

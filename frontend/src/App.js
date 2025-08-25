@@ -5,6 +5,7 @@ import GameStatus from "./GameStatus";
 import GameWon from "./pages/GameWon";
 import GameOver from "./pages/GameOver";
 import Home from "./pages/Home"; // Make sure this exists
+import Leaderboard from "./pages/Leaderboard";
 
 function GameLayout() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/play" element={<Question />} />
         <Route path="/game-won" element={<GameWon />} />
         <Route path="/game-over" element={<GameOver />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
       </Routes>
     </BrowserRouter>
   );

@@ -9,6 +9,7 @@ cursor = conn.cursor()
 # Drop old tables
 cursor.execute("DROP TABLE IF EXISTS questions")
 cursor.execute("DROP TABLE IF EXISTS leaderboard")
+cursor.execute("DROP TABLE IF EXISTS users")
 
 # Questions table
 cursor.execute("""
@@ -19,13 +20,22 @@ CREATE TABLE questions (
 )
 """)
 
-# Leaderboard table
+# Users table (new for authentication)
+cursor.execute("""
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT UNIQUE NOT NULL,
+    password_hash TEXT NOT NULL
+)
+""")
+
+# Leaderboard table (stores username and score)
 cursor.execute("""
 CREATE TABLE leaderboard (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT NOT NULL UNIQUE,
-    password TEXT NOT NULL,
-    score INTEGER DEFAULT 0
+    user_id INTEGER NOT NULL,
+    score INTEGER DEFAULT 0,
+    FOREIGN KEY (user_id) REFERENCES users(id)
 )
 """)
 
@@ -40,4 +50,4 @@ with open(os.path.join(os.path.dirname(__file__), "questions.json"), encoding="u
 
 conn.commit()
 conn.close()
-print("Database setup complete with questions + leaderboard!")
+print("Database setup complete with questions + users + leaderboard!")
